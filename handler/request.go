@@ -42,3 +42,19 @@ func (request *CreateOpeningRequest) Validate() error {
 	
 	return nil
 }
+
+type UpdateOpeningRequest struct {
+	Role     string  `json: "role"`
+	Company  string  `json: "company"`
+	Location string  `json: "location"`
+	Remote   *bool   `json: "remote"`
+	Link     string  `json: "link"`
+	Salary   float64 `json: "salary"`
+}
+
+func (request *UpdateOpeningRequest) Validate() error {
+	if request.Role != "" || request.Company != "" || request.Location != "" || request.Remote != nil || request.Link != "" || request.Salary <= 0 {
+		return nil
+	}
+	return fmt.Errorf("At least one valid must be provided")
+}
