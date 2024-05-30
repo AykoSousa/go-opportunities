@@ -1,7 +1,9 @@
 .PHONY: default run build test docs clean
 
 # Variables
-default: run
+default:
+	@swag init
+	@go run main.go
 
 run:
 	@go run main.go
